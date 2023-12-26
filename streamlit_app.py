@@ -7,7 +7,7 @@ import sqlite3
 
 st.title("Recall Analysis")
 
-def get_data_from_DB() -> pd.Dataframe:
+def get_data_from_DB() -> pd.DataFrame:
   con = sqlite3.connect('recall.db')
   df = pd.read_sql_query("SELECT * FROM tb_recalls", con)
   con.close()
