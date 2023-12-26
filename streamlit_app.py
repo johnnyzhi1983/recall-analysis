@@ -3,12 +3,13 @@ import streamlit as st
 import sqlite3
 st.set_page_config(page_title='RecallAnalysis', layout='wide')
 import openai
+from pandasai import SmartDataframe
+from pandasai.llm import OpenAI
 
 
 st.title("Recall Analysis")
 
-openai.api_key = st.secrets["openAI_SK"]
-
+llm = OpenAI(api_token=st.secrets["openAI_SK"])
 
 def get_data_from_DB() -> pd.DataFrame:
   con = sqlite3.connect('recall.db')
@@ -19,7 +20,8 @@ def get_data_from_DB() -> pd.DataFrame:
 
 if __name__ == '__main__':
   recall_exp = st.expander("Click to see the raw data...", expanded=False)
-  with recall_exp:
-    df = get_data_from_DB()
+  df = get_data_from_DB()
+  with recall_exp:    
     st.dataframe(df)
-    st.write("????")
+  sdf = SmartDataframe(df, config={"llm": llm})
+  st.write(sdf.chat('How many recall cases happened in December 2023?'))
