@@ -1,0 +1,7 @@
+[theme]
+base="light"
+primaryColor='#026026'  # radiobuttons etc
+backgroundColor="#FFF"  # Main color
+secondaryBackgroundColor="#E1E0E2"  # sidebar color
+textColor="#262730"
+font="monospace"
