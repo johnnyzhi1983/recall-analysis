@@ -12,9 +12,12 @@ openai.api_key = st.secrets["openAI_SK"]
 
 def get_data_from_DB() -> pd.DataFrame:
   con = sqlite3.connect('recall.db')
-  df = pd.read_sql_query("SELECT * FROM tb_recalls", con)
+  df = pd.read_sql_query("SELECT url, title, date, content FROM tb_recalls", con)
   con.close()
   return df
 
-df = get_data_from_DB()
-st.dataframe(df)
+
+if __name__ == '__main__':
+  with st.expander("Click to see the raw data...", expanded=False)
+    df = get_data_from_DB()
+    st.dataframe(df)
