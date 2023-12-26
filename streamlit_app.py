@@ -15,3 +15,5 @@ def get_data_from_DB() -> pd.DataFrame:
 
 df = get_data_from_DB()
 st.dataframe(df)
+
+st.write(st.secrets["openAI_SK"])
