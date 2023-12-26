@@ -12,5 +12,6 @@ def get_data_from_DB() -> pd.DataFrame:
   df = pd.read_sql_query("SELECT * FROM tb_recalls", con)
   con.close()
   return df
-  
+
+df = get_data_from_DB()
 st.dataframe(df)
