@@ -18,6 +18,7 @@ def get_data_from_DB() -> pd.DataFrame:
 
 
 if __name__ == '__main__':
-  with st.expander("Click to see the raw data...", expanded=False):
+  recall_exp = st.expander("Click to see the raw data...", expanded=False)
+  with recall_exp:
     df = get_data_from_DB()
     st.dataframe(df)
